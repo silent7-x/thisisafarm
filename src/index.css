@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@keyframes spin-pause {
+  0% {
+    transform: rotate(0deg);
+  }
+  67% {
+    transform: rotate(720deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+}
+
+.animate-spin-pause {
+  animation: spin-pause 2s linear infinite;
+}
