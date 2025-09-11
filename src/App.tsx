@@ -96,7 +96,7 @@ export default function App() {
               <PiChartLineUpBold className="size-10 sm:size-16 text-green-600 drop-shadow-lg brightness-80" />
             </button>
           </DialogTrigger>
-          <DialogContent className="h-[80vh] sm:h-[88vh] w-[96vw] p-0 pt-12 flex flex-col border-none shadow-none">
+          <DialogContent className="h-[80vh] sm:h-[88vh] w-[96vw] p-0 pt-12 flex flex-col border-none shadow-none bg-transparent">
             <div className="flex-1">
               <iframe
                 src="https://dexscreener.com/solana/42vtq6lbytcptnmqwvstuaewvmckwmfmabwwivyhidcj?embed=1&theme=dark&trades=0&info=0"
