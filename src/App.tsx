@@ -89,8 +89,8 @@ export default function App() {
               onClick={() => setIsChartOpen(true)}
               className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
               style={{
-                left: "69.5%",
-                top: "96.25%",
+                left: "72.5%",
+                top: "86.5%",
               }}
             >
               <PiChartLineUpBold className="size-10 sm:size-16 text-green-600 drop-shadow-lg brightness-80" />
