@@ -1,9 +1,13 @@
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useState } from "react";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { LiaUsersSolid } from "react-icons/lia";
+import { PiChartLineUpBold } from "react-icons/pi";
 
 export default function App() {
+  const [isChartOpen, setIsChartOpen] = useState<boolean>(false);
   return (
-    <main className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-60% overflow-x-hidden">
+    <main className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden">
       {/* Scène: ratio verrouillé = même référentiel que l'image */}
       <div className="relative w-full max-w-2xl aspect-[2/3]">
         {/* Le dessin devient un vrai élément, pas un background CSS */}
@@ -25,7 +29,7 @@ export default function App() {
             top: "18%",
           }}
         >
-          <FaSquareXTwitter className="size-10 sm:size-14 text-black drop-shadow-lg" />
+          <FaSquareXTwitter className="size-10 sm:size-16 text-black drop-shadow-lg" />
         </a>
 
         {/* Coingecko Icon */}
@@ -42,40 +46,22 @@ export default function App() {
           <img
             src="/CG-Symbol.svg"
             alt="Coingecko"
-            className="size-9 sm:size-14 drop-shadow-lg"
-          />
-        </a>
-
-        {/* Dexscreener Icon */}
-        <a
-          href="https://dexscreener.com/solana/42vtq6lbytcptnmqwvstuaewvmckwmfmabwwivyhidcj"
-          className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-6 -translate-x-1/2 -translate-y-1/2"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            left: "69%",
-            top: "96%",
-          }}
-        >
-          <img
-            src="/dex-screener-seeklogo.svg"
-            alt="Dexscreener"
-            className="size-10 sm:size-14 drop-shadow-lg brightness-0"
+            className="size-9 sm:size-15 drop-shadow-lg"
           />
         </a>
 
         {/* Community Icon */}
         <a
           href="https://x.com/i/communities/1931968100594819518"
-          className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-6 -translate-x-1/2 -translate-y-1/2"
+          className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10  -translate-x-1/2 -translate-y-1/2"
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            left: "13%",
-            top: "29%",
+            left: "12.5%",
+            top: "29.25%",
           }}
         >
-          <LiaUsersSolid className="size-10 sm:size-14 text-black drop-shadow-lg" />
+          <LiaUsersSolid className="size-10 sm:size-16 text-black drop-shadow-lg" />
         </a>
 
         {/* Pump.fun Logo */}
@@ -92,10 +78,54 @@ export default function App() {
           <img
             src="/logo.webp"
             alt="Pump.fun"
-            className="size-9 sm:size-14 drop-shadow-lg"
+            className="size-9 sm:size-16 drop-shadow-lg"
           />
         </a>
+
+        {/* Chart Modal */}
+        <Dialog open={isChartOpen} onOpenChange={setIsChartOpen}>
+          <DialogTrigger asChild>
+            <button
+              onClick={() => setIsChartOpen(true)}
+              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+              style={{
+                left: "69.5%",
+                top: "96.25%",
+              }}
+            >
+              <PiChartLineUpBold className="size-10 sm:size-16 text-green-600 drop-shadow-lg brightness-80" />
+            </button>
+          </DialogTrigger>
+          <DialogContent className="h-[80vh] sm:h-[88vh] w-[96vw] p-0 pt-12 flex flex-col border-none shadow-none">
+            <div className="flex-1">
+              <iframe
+                src="https://dexscreener.com/solana/42vtq6lbytcptnmqwvstuaewvmckwmfmabwwivyhidcj?embed=1&theme=dark&trades=0&info=0"
+                width="100%"
+                height="100%"
+                style={{ border: "none", borderRadius: "8px 8px 8px 8px" }}
+                title="This is a Farm Chart"
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </main>
   );
 }
+
+// <a
+// href="https://dexscreener.com/solana/42vtq6lbytcptnmqwvstuaewvmckwmfmabwwivyhidcj"
+// className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-6 -translate-x-1/2 -translate-y-1/2"
+// target="_blank"
+// rel="noopener noreferrer"
+// style={{
+//   left: "69%",
+//   top: "96%",
+// }}
+// >
+// <img
+//   src="/dex-screener-seeklogo.svg"
+//   alt="Dexscreener"
+//   className="size-10 sm:size-16 drop-shadow-lg brightness-0"
+// />
+// </a>
