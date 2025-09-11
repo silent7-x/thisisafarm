@@ -22,7 +22,7 @@ export default function App() {
           rel="noopener noreferrer"
           style={{
             left: "90%",
-            top: "9%",
+            top: "18%",
           }}
         >
           <FaSquareXTwitter className="size-10 sm:size-14 text-black drop-shadow-lg" />
@@ -31,7 +31,7 @@ export default function App() {
         {/* Coingecko Icon */}
         <a
           href="https://www.coingecko.com/en/coins/this-is-a-farm"
-          className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-12 -translate-x-1/2 -translate-y-1/2"
+          className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-15 -translate-x-1/2 -translate-y-1/2"
           target="_blank"
           rel="noopener noreferrer"
           style={{
@@ -85,8 +85,8 @@ export default function App() {
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            left: "61%",
-            top: "45%",
+            left: "65%",
+            top: "34.5%",
           }}
         >
           <img
