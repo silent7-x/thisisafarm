@@ -80,7 +80,7 @@ export default function App() {
 
         {/* Pump.fun Logo */}
         <a
-          href="#"
+          href="https://pump.fun/coin/BdTEJq3yEp68SNmeBfqBbDDy7nbSGftkDhDkVef6pump"
           className="absolute animate-spin-pause hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -translate-x-1/2 -translate-y-1/2"
           target="_blank"
           rel="noopener noreferrer"
