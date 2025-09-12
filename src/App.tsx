@@ -18,6 +18,7 @@ import { Footer } from "./components/Footer";
 export default function App() {
   const [isChartOpen, setIsChartOpen] = useState<boolean>(false);
   const [isContractOpen, setIsContractOpen] = useState<boolean>(false);
+  const [isJupiterOpen, setIsJupiterOpen] = useState<boolean>(false);
   return (
     <main className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden">
       {/* Scène: ratio verrouillé = même référentiel que l'image */}
@@ -152,18 +153,31 @@ export default function App() {
         </Dialog>
 
         {/* Buy Token Icon */}
-        <a
-          href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=BdTEJq3yEp68SNmeBfqBbDDy7nbSGftkDhDkVef6pump"
-          className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            left: "71%",
-            top: "84%",
-          }}
-        >
-          <span className="text-7xl sm:text-9xl drop-shadow-lg">💰</span>
-        </a>
+        <Dialog open={isJupiterOpen} onOpenChange={setIsJupiterOpen}>
+          <DialogTrigger asChild>
+            <button
+              onClick={() => setIsJupiterOpen(true)}
+              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+              style={{
+                left: "71%",
+                top: "84%",
+              }}
+            >
+              <span className="text-7xl sm:text-9xl drop-shadow-lg">💰</span>
+            </button>
+          </DialogTrigger>
+          <DialogContent className="h-[95vh] sm:max-w-xl sm:h-[86vh] p-0 pt-12 flex flex-col border-none shadow-none bg-transparent">
+            <div className="flex-1">
+              <iframe
+                src="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=BdTEJq3yEp68SNmeBfqBbDDy7nbSGftkDhDkVef6pump&embed=1"
+                width="100%"
+                height="100%"
+                style={{ border: "none", borderRadius: "8px 8px 8px 8px" }}
+                title="Jupiter Swap Widget"
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
       <Footer />
     </main>
