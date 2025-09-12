@@ -4,7 +4,8 @@ export const Loader = () => {
   const [gifLoaded, setGifLoaded] = useState(false);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70%">
+    //
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% animate-in sm:slide-in-from-top-4 fade-in-10 duration-800">
       <div className="flex flex-col items-center gap-4">
         {/* Loading animation with farm theme */}
         <div className="relative">
