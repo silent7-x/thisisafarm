@@ -5,7 +5,7 @@ export const Footer = () => {
     <footer className="fixed bottom-0 z-20 flex flex-col-reverse items-center gap-2 sm:gap-2 w-full p-1 pt-2 sm:pb-2 max-w-2xl bg-gradient-to-b from-transparent to-green-300/80 backdrop-blur-sm">
       {/* Copyright Text */}
       <div className="flex flex-row text-xs sm:text-sm text-gray-600 justify-center itemscenter">
-        <p className="font-bold">
+        <p className="font-semibold sm:font-bold">
           $Farm 2025 - All rights reserved ©
           <span className="font-normal">&nbsp;-&nbsp;</span>
         </p>

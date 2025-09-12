@@ -28,32 +28,13 @@ export default function App() {
     img.src = "/mobile-bg.webp";
     img.decode?.().catch(() => {});
 
-    // Preload iframes off-screen
-    const chartIframe = document.createElement("iframe");
-    chartIframe.src =
-      "https://dexscreener.com/solana/42vtq6lbytcptnmqwvstuaewvmckwmfmabwwivyhidcj?embed=1&theme=dark&trades=0&info=0";
-    chartIframe.style.display = "none";
-    chartIframe.style.position = "absolute";
-    chartIframe.style.left = "-9999px";
-    document.body.appendChild(chartIframe);
-
-    const jupiterIframe = document.createElement("iframe");
-    jupiterIframe.src =
-      "https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=BdTEJq3yEp68SNmeBfqBbDDy7nbSGftkDhDkVef6pump&embed=1";
-    jupiterIframe.style.display = "none";
-    jupiterIframe.style.position = "absolute";
-    jupiterIframe.style.left = "-9999px";
-    document.body.appendChild(jupiterIframe);
-
     // Timer for overlay loader
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2800);
+    }, 3000);
 
     return () => {
       clearTimeout(timer);
-      chartIframe.remove();
-      jupiterIframe.remove();
     };
   }, []);
 
@@ -80,7 +61,7 @@ export default function App() {
           rel="noopener noreferrer"
           style={{
             left: "90%",
-            top: "18%",
+            top: "17.5%",
           }}
         >
           <FaSquareXTwitter className="size-11 sm:size-18 text-black drop-shadow-lg" />
