@@ -23,20 +23,42 @@ export default function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // Simple timer pour le loader
+    // Précharger l'image côté JS (sécurité double filet)
+    const img = new Image();
+    img.src = "/mobile-bg.webp";
+    img.decode?.().catch(() => {});
+
+    // Précharger les iframes off-screen
+    const chartIframe = document.createElement("iframe");
+    chartIframe.src =
+      "https://dexscreener.com/solana/42vtq6lbytcptnmqwvstuaewvmckwmfmabwwivyhidcj?embed=1&theme=dark&trades=0&info=0";
+    chartIframe.style.display = "none";
+    chartIframe.style.position = "absolute";
+    chartIframe.style.left = "-9999px";
+    document.body.appendChild(chartIframe);
+
+    const jupiterIframe = document.createElement("iframe");
+    jupiterIframe.src =
+      "https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=BdTEJq3yEp68SNmeBfqBbDDy7nbSGftkDhDkVef6pump&embed=1";
+    jupiterIframe.style.display = "none";
+    jupiterIframe.style.position = "absolute";
+    jupiterIframe.style.left = "-9999px";
+    document.body.appendChild(jupiterIframe);
+
+    // Timer pour l'overlay loader
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2800); // 3 secondes de chargement
+    }, 2800);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      chartIframe.remove();
+      jupiterIframe.remove();
+    };
   }, []);
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
-    <main className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden ">
+    <main className="relative min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden">
       {/* Scène: ratio verrouillé = même référentiel que l'image */}
       <div className="relative w-full max-w-2xl aspect-[2/3] my-22">
         {/* Le dessin devient un vrai élément, pas un background CSS */}
@@ -45,6 +67,9 @@ export default function App() {
           alt="This is a Farm"
           className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
           draggable={false}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
 
         {/* X (Twitter) Icon */}
@@ -196,6 +221,13 @@ export default function App() {
         </Dialog>
       </div>
       <Footer />
+
+      {/* Overlay Loader */}
+      {isLoading && (
+        <div className="fixed inset-0 z-50 grid place-items-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70%">
+          <Loader />
+        </div>
+      )}
     </main>
   );
 }
