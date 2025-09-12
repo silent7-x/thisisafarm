@@ -1,11 +1,22 @@
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { useState } from "react";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { LiaUsersSolid } from "react-icons/lia";
 import { PiChartLineUpBold } from "react-icons/pi";
+import { RiContractLine } from "react-icons/ri";
+
+import { Contract } from "./components/Contract";
 
 export default function App() {
   const [isChartOpen, setIsChartOpen] = useState<boolean>(false);
+  const [isContractOpen, setIsContractOpen] = useState<boolean>(false);
   return (
     <main className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden">
       {/* Scène: ratio verrouillé = même référentiel que l'image */}
@@ -87,13 +98,13 @@ export default function App() {
           <DialogTrigger asChild>
             <button
               onClick={() => setIsChartOpen(true)}
-              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-9 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
               style={{
-                left: "72.5%",
-                top: "86.5%",
+                left: "71%",
+                top: "86%",
               }}
             >
-              <PiChartLineUpBold className="size-10 sm:size-16 text-green-600 drop-shadow-lg brightness-80" />
+              <PiChartLineUpBold className="size-11 sm:size-17 text-lime-400 drop-shadow-lg" />
             </button>
           </DialogTrigger>
           <DialogContent className="h-[80vh] sm:h-[88vh] w-[96vw] p-0 pt-12 flex flex-col border-none shadow-none bg-transparent">
@@ -106,6 +117,31 @@ export default function App() {
                 title="This is a Farm Chart"
               />
             </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Contract Modal */}
+        <Dialog open={isContractOpen} onOpenChange={setIsContractOpen}>
+          <DialogTrigger asChild>
+            <button
+              onClick={() => setIsContractOpen(true)}
+              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+              style={{
+                left: "62.5%",
+                top: "60.5%",
+              }}
+            >
+              <RiContractLine className="size-10 sm:size-16 text-amber-300 drop-shadow-lg" />
+            </button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-xl">
+            <DialogHeader>
+              <DialogTitle>Contract Address</DialogTitle>
+              <DialogDescription className="text-xs sm:text-sm">
+                Make life changing money by joining the $Farm
+              </DialogDescription>
+            </DialogHeader>
+            <Contract />
           </DialogContent>
         </Dialog>
       </div>
