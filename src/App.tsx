@@ -31,7 +31,7 @@ export default function App() {
     // Timer for overlay loader
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 2800);
 
     return () => {
       clearTimeout(timer);
