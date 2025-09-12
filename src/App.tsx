@@ -23,12 +23,12 @@ export default function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // Précharger l'image côté JS (sécurité double filet)
+    // Preload image on JS side (double safety net)
     const img = new Image();
     img.src = "/mobile-bg.webp";
     img.decode?.().catch(() => {});
 
-    // Précharger les iframes off-screen
+    // Preload iframes off-screen
     const chartIframe = document.createElement("iframe");
     chartIframe.src =
       "https://dexscreener.com/solana/42vtq6lbytcptnmqwvstuaewvmckwmfmabwwivyhidcj?embed=1&theme=dark&trades=0&info=0";
@@ -45,7 +45,7 @@ export default function App() {
     jupiterIframe.style.left = "-9999px";
     document.body.appendChild(jupiterIframe);
 
-    // Timer pour l'overlay loader
+    // Timer for overlay loader
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2800);
@@ -59,9 +59,9 @@ export default function App() {
 
   return (
     <main className="relative min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden">
-      {/* Scène: ratio verrouillé = même référentiel que l'image */}
+      {/* Scene: locked ratio = same reference as the image */}
       <div className="relative w-full max-w-2xl aspect-[2/3] my-22">
-        {/* Le dessin devient un vrai élément, pas un background CSS */}
+        {/* The drawing becomes a real element, not a CSS background */}
         <img
           src="/mobile-bg.webp"
           alt="This is a Farm"

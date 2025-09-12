@@ -6,9 +6,9 @@ export const Loader = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70%">
       <div className="flex flex-col items-center gap-4">
-        {/* Animation de chargement avec le thème ferme */}
+        {/* Loading animation with farm theme */}
         <div className="relative">
-          {/* GIF de chargement */}
+          {/* Loading GIF */}
           <img
             src="/tractor_opt.webp"
             alt="Loading animation"
@@ -18,14 +18,14 @@ export const Loader = () => {
             onLoad={() => setGifLoaded(true)}
           />
 
-          {/* Fallback tracteur animé */}
+          {/* Animated tractor fallback */}
           {!gifLoaded && (
             <div className="animate-bounce">
               <span className="text-6xl">🚜</span>
             </div>
           )}
 
-          {/* Particules de terre qui volent */}
+          {/* Flying dirt particles */}
           <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
             <div className="flex gap-1">
               <div
@@ -44,7 +44,7 @@ export const Loader = () => {
           </div>
         </div>
 
-        {/* Texte de chargement */}
+        {/* Loading text */}
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
             This is a Farm
@@ -54,7 +54,7 @@ export const Loader = () => {
           </p>
         </div>
 
-        {/* Barre de progression animée */}
+        {/* Animated progress bar */}
         <div className="w-48 h-2 bg-white/30 rounded-full overflow-hidden">
           <div className="h-full bg-gradient-to-r from-green-400 to-blue-500 rounded-full animate-pulse"></div>
         </div>
