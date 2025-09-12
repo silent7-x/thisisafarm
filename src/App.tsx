@@ -8,11 +8,12 @@ import {
 } from "@/components/ui/dialog";
 import { ReceiptText } from "lucide-react";
 import { useState } from "react";
-import { FaChartLine } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { LiaUsersSolid } from "react-icons/lia";
+import { LuChartCandlestick } from "react-icons/lu";
 
 import { Contract } from "./components/Contract";
+import { Footer } from "./components/Footer";
 
 export default function App() {
   const [isChartOpen, setIsChartOpen] = useState<boolean>(false);
@@ -40,7 +41,7 @@ export default function App() {
             top: "18%",
           }}
         >
-          <FaSquareXTwitter className="size-11 sm:size-16 text-black drop-shadow-lg" />
+          <FaSquareXTwitter className="size-11 sm:size-18 text-black drop-shadow-lg" />
         </a>
 
         {/* Coingecko Icon */}
@@ -98,13 +99,13 @@ export default function App() {
           <DialogTrigger asChild>
             <button
               onClick={() => setIsChartOpen(true)}
-              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-9 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-9 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
               style={{
-                left: "71%",
-                top: "86%",
+                left: "14%",
+                top: "80%",
               }}
             >
-              <FaChartLine className="size-10 sm:size-16 text-lime-400 drop-shadow-lg" />
+              <LuChartCandlestick className="size-10 sm:size-16  drop-shadow-lg " />
             </button>
           </DialogTrigger>
           <DialogContent className="h-[80vh] sm:h-[88vh] w-[96vw] p-0 pt-12 flex flex-col border-none shadow-none bg-transparent">
@@ -128,11 +129,11 @@ export default function App() {
               className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-4 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
               style={{
                 left: "62.5%",
-                top: "60.5%",
+                top: "61%",
               }}
             >
               <ReceiptText
-                className="size-10 sm:size-16 text-amber-300 drop-shadow-lg"
+                className="size-10 sm:size-15 text-amber-400 drop-shadow-lg"
                 strokeWidth={2.25}
               />
             </button>
@@ -153,17 +154,18 @@ export default function App() {
         {/* Buy Token Icon */}
         <a
           href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=BdTEJq3yEp68SNmeBfqBbDDy7nbSGftkDhDkVef6pump"
-          className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-8 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+          className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            left: "34%",
-            top: "71%",
+            left: "71%",
+            top: "84%",
           }}
         >
           <span className="text-7xl sm:text-9xl drop-shadow-lg">💰</span>
         </a>
       </div>
+      <Footer />
     </main>
   );
 }
