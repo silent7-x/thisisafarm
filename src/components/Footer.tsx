@@ -6,7 +6,7 @@ export const Footer = () => {
       {/* Copyright Text */}
       <div className="flex flex-row text-xs sm:text-sm text-gray-600 justify-center itemscenter">
         <p className="font-bold">
-          Farm 2025 - All rights reserved ©
+          $Farm 2025 - All rights reserved ©
           <span className="font-normal">&nbsp;-&nbsp;</span>
         </p>
         <a

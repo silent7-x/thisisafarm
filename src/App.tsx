@@ -7,25 +7,41 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ReceiptText } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { LiaUsersSolid } from "react-icons/lia";
 import { LuChartCandlestick } from "react-icons/lu";
 
 import { Contract } from "./components/Contract";
 import { Footer } from "./components/Footer";
+import { Loader } from "./components/Loader";
 
 export default function App() {
   const [isChartOpen, setIsChartOpen] = useState<boolean>(false);
   const [isContractOpen, setIsContractOpen] = useState<boolean>(false);
   const [isJupiterOpen, setIsJupiterOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    // Simple timer pour le loader
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2800); // 3 secondes de chargement
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <main className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden ">
       {/* Scène: ratio verrouillé = même référentiel que l'image */}
       <div className="relative w-full max-w-2xl aspect-[2/3] my-22">
         {/* Le dessin devient un vrai élément, pas un background CSS */}
         <img
-          src="/mobile-bg.png"
+          src="/mobile-bg.webp"
           alt="This is a Farm"
           className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
           draggable={false}
@@ -183,20 +199,3 @@ export default function App() {
     </main>
   );
 }
-
-// <a
-// href="https://dexscreener.com/solana/42vtq6lbytcptnmqwvstuaewvmckwmfmabwwivyhidcj"
-// className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-6 -translate-x-1/2 -translate-y-1/2"
-// target="_blank"
-// rel="noopener noreferrer"
-// style={{
-//   left: "69%",
-//   top: "96%",
-// }}
-// >
-// <img
-//   src="/dex-screener-seeklogo.svg"
-//   alt="Dexscreener"
-//   className="size-10 sm:size-16 drop-shadow-lg brightness-0"
-// />
-// </a>
