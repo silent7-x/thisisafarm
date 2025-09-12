@@ -20,9 +20,9 @@ export default function App() {
   const [isContractOpen, setIsContractOpen] = useState<boolean>(false);
   const [isJupiterOpen, setIsJupiterOpen] = useState<boolean>(false);
   return (
-    <main className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden">
+    <main className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden ">
       {/* Scène: ratio verrouillé = même référentiel que l'image */}
-      <div className="relative w-full max-w-2xl aspect-[2/3]">
+      <div className="relative w-full max-w-2xl aspect-[2/3] my-22">
         {/* Le dessin devient un vrai élément, pas un background CSS */}
         <img
           src="/mobile-bg.png"
