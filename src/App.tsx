@@ -41,7 +41,7 @@ export default function App() {
   return (
     <main className="relative h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-hidden animate-in slide-in-from-top-4 fade-in-10 duration-800">
       {/* Scene: locked ratio = same reference as the image */}
-      <div className="relative w-full max-w-2xl aspect-[2/3] my-22">
+      <div className="relative w-full max-w-2xl aspect-[2/3] mb-22 mt-11 sm:mt-22">
         {/* The drawing becomes a real element, not a CSS background */}
         <img
           src="/mobile-bg.webp"
