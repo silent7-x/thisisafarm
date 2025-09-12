@@ -6,11 +6,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { ReceiptText } from "lucide-react";
 import { useState } from "react";
+import { FaChartLine } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { LiaUsersSolid } from "react-icons/lia";
-import { PiChartLineUpBold } from "react-icons/pi";
-import { RiContractLine } from "react-icons/ri";
 
 import { Contract } from "./components/Contract";
 
@@ -40,7 +40,7 @@ export default function App() {
             top: "18%",
           }}
         >
-          <FaSquareXTwitter className="size-10 sm:size-16 text-black drop-shadow-lg" />
+          <FaSquareXTwitter className="size-11 sm:size-16 text-black drop-shadow-lg" />
         </a>
 
         {/* Coingecko Icon */}
@@ -51,13 +51,13 @@ export default function App() {
           rel="noopener noreferrer"
           style={{
             left: "18%",
-            top: "60%",
+            top: "59%",
           }}
         >
           <img
             src="/CG-Symbol.svg"
             alt="Coingecko"
-            className="size-9 sm:size-15 drop-shadow-lg"
+            className="size-10 sm:size-16 drop-shadow-lg"
           />
         </a>
 
@@ -89,7 +89,7 @@ export default function App() {
           <img
             src="/logo.webp"
             alt="Pump.fun"
-            className="size-9 sm:size-16 drop-shadow-lg"
+            className="size-10 sm:size-16 drop-shadow-lg"
           />
         </a>
 
@@ -104,7 +104,7 @@ export default function App() {
                 top: "86%",
               }}
             >
-              <PiChartLineUpBold className="size-11 sm:size-17 text-lime-400 drop-shadow-lg" />
+              <FaChartLine className="size-10 sm:size-16 text-lime-400 drop-shadow-lg" />
             </button>
           </DialogTrigger>
           <DialogContent className="h-[80vh] sm:h-[88vh] w-[96vw] p-0 pt-12 flex flex-col border-none shadow-none bg-transparent">
@@ -125,18 +125,23 @@ export default function App() {
           <DialogTrigger asChild>
             <button
               onClick={() => setIsContractOpen(true)}
-              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-4 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
               style={{
                 left: "62.5%",
                 top: "60.5%",
               }}
             >
-              <RiContractLine className="size-10 sm:size-16 text-amber-300 drop-shadow-lg" />
+              <ReceiptText
+                className="size-10 sm:size-16 text-amber-300 drop-shadow-lg"
+                strokeWidth={2.25}
+              />
             </button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-xl">
             <DialogHeader>
-              <DialogTitle>Contract Address</DialogTitle>
+              <DialogTitle className="mb-2">
+                Contract Address 🧑‍🌾 🚜 🌽
+              </DialogTitle>
               <DialogDescription className="text-xs sm:text-sm">
                 Make life changing money by joining the $Farm
               </DialogDescription>
@@ -144,6 +149,20 @@ export default function App() {
             <Contract />
           </DialogContent>
         </Dialog>
+
+        {/* Buy Token Icon */}
+        <a
+          href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=BdTEJq3yEp68SNmeBfqBbDDy7nbSGftkDhDkVef6pump"
+          className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-8 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            left: "34%",
+            top: "71%",
+          }}
+        >
+          <span className="text-7xl sm:text-9xl drop-shadow-lg">💰</span>
+        </a>
       </div>
     </main>
   );

@@ -20,7 +20,7 @@ export const Contract = () => {
   return (
     <Button
       variant="outline"
-      className="py-10 sm:py-6 font-mono bg-accent hover:bg-accent/70 cursor-pointer transition-transform hover:scale-102 active:scale-98 whitespace-normal break-all"
+      className="py-8 sm:py-6 font-mono bg-accent hover:bg-accent/70 cursor-pointer transition-transform hover:scale-102 active:scale-98 whitespace-normal break-all"
       onClick={copyToClipboard}
     >
       <ClipboardCopy className="mr-1 sm:mr-4 size-6 shrink-0" />
