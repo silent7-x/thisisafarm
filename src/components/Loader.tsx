@@ -51,7 +51,7 @@ export const Loader = () => {
             This is a Farm
           </h2>
           <p className="text-gray-600 animate-pulse">
-            Farming your crypto experience with the agriCult
+            “You either farm or get farmed”
           </p>
         </div>
 

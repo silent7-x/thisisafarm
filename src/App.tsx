@@ -39,171 +39,176 @@ export default function App() {
   }, []);
 
   return (
-    <main className="relative min-h-svh w-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden">
-      {/* Scene: locked ratio = same reference as the image */}
+    <main className="min-h-svh w-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden">
+      <div className="flex flex-col max-w-2xl w-full flex-1 p-2 sm:p-4">
+        {/* Scene: locked ratio = same reference as the image */}
+        {/* sm:mt-16*/}
+        <div className="flex-1 grid place-items-center">
+          <div className="relative w-full aspect-[2/3]">
+            {/* The drawing becomes a real element, not a CSS background */}
+            <img
+              src="/mobile-bg.webp"
+              alt="This is a Farm"
+              className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none rounded-2xl sm:rounded-4xl"
+              draggable={false}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
 
-      <div className="relative w-full max-w-2xl aspect-[2/3] sm:mt-16">
-        {/* The drawing becomes a real element, not a CSS background */}
-        <img
-          src="/mobile-bg.webp"
-          alt="This is a Farm"
-          className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
-          draggable={false}
-          loading="eager"
-          decoding="async"
-          fetchPriority="high"
-        />
-
-        {/* X (Twitter) Icon */}
-        <a
-          href="https://x.com/ThisisaFarm"
-          className="absolute animate-bounce hover:scale-120 active:scale-95 transition-transform duration-300 z-10 rotate-15 -translate-x-1/2 -translate-y-1/2"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            left: "90%",
-            top: "17.5%",
-          }}
-        >
-          <FaSquareXTwitter className="size-11 sm:size-18 text-black drop-shadow-lg" />
-        </a>
-
-        {/* Coingecko Icon */}
-        <a
-          href="https://www.coingecko.com/en/coins/this-is-a-farm"
-          className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-15 -translate-x-1/2 -translate-y-1/2"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            left: "18%",
-            top: "59%",
-          }}
-        >
-          <img
-            src="/CG-Symbol.svg"
-            alt="Coingecko"
-            className="size-10 sm:size-16 drop-shadow-lg"
-          />
-        </a>
-
-        {/* Community Icon */}
-        <a
-          href="https://x.com/i/communities/1931968100594819518"
-          className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10  -translate-x-1/2 -translate-y-1/2"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            left: "12.5%",
-            top: "29.25%",
-          }}
-        >
-          <LiaUsersSolid className="size-10 sm:size-16 text-black drop-shadow-lg" />
-        </a>
-
-        {/* Pump.fun Logo */}
-        <a
-          href="https://pump.fun/coin/BdTEJq3yEp68SNmeBfqBbDDy7nbSGftkDhDkVef6pump"
-          className="absolute animate-spin-pause hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -translate-x-1/2 -translate-y-1/2"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            left: "65%",
-            top: "34.5%",
-          }}
-        >
-          <img
-            src="/logo.webp"
-            alt="Pump.fun"
-            className="size-10 sm:size-16 drop-shadow-lg"
-          />
-        </a>
-
-        {/* Chart Modal */}
-        <Dialog open={isChartOpen} onOpenChange={setIsChartOpen}>
-          <DialogTrigger asChild>
-            <button
-              onClick={() => setIsChartOpen(true)}
-              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-9 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+            {/* X (Twitter) Icon */}
+            <a
+              href="https://x.com/ThisisaFarm"
+              className="absolute animate-bounce hover:scale-120 active:scale-95 transition-transform duration-300 z-10 rotate-15 -translate-x-1/2 -translate-y-1/2"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                left: "14%",
-                top: "80%",
+                left: "90%",
+                top: "17.5%",
               }}
             >
-              <LuChartCandlestick className="size-10 sm:size-16  drop-shadow-lg " />
-            </button>
-          </DialogTrigger>
-          <DialogContent className="h-[80vh] sm:h-[88vh] w-[96vw] p-0 pt-12 flex flex-col border-none shadow-none bg-transparent">
-            <div className="flex-1">
-              <iframe
-                src="https://dexscreener.com/solana/42vtq6lbytcptnmqwvstuaewvmckwmfmabwwivyhidcj?embed=1&theme=dark&trades=0&info=0"
-                width="100%"
-                height="100%"
-                style={{ border: "none", borderRadius: "8px 8px 8px 8px" }}
-                title="This is a Farm Chart"
-              />
-            </div>
-          </DialogContent>
-        </Dialog>
+              <FaSquareXTwitter className="size-11 sm:size-18 text-black drop-shadow-lg" />
+            </a>
 
-        {/* Contract Modal */}
-        <Dialog open={isContractOpen} onOpenChange={setIsContractOpen}>
-          <DialogTrigger asChild>
-            <button
-              onClick={() => setIsContractOpen(true)}
-              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-4 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+            {/* Coingecko Icon */}
+            <a
+              href="https://www.coingecko.com/en/coins/this-is-a-farm"
+              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-15 -translate-x-1/2 -translate-y-1/2"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                left: "62.5%",
-                top: "61%",
+                left: "18%",
+                top: "59%",
               }}
             >
-              <ReceiptText
-                className="size-10 sm:size-15 text-amber-400 drop-shadow-lg"
-                strokeWidth={2.25}
+              <img
+                src="/CG-Symbol.svg"
+                alt="Coingecko"
+                className="size-10 sm:size-16 drop-shadow-lg"
               />
-            </button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-xl">
-            <DialogHeader>
-              <DialogTitle className="mb-2">
-                Contract Address 🧑‍🌾 🚜 🌽
-              </DialogTitle>
-              <DialogDescription className="text-xs sm:text-sm">
-                Make life changing money by joining the $Farm
-              </DialogDescription>
-            </DialogHeader>
-            <Contract />
-          </DialogContent>
-        </Dialog>
+            </a>
 
-        {/* Buy Token Icon */}
-        <Dialog open={isJupiterOpen} onOpenChange={setIsJupiterOpen}>
-          <DialogTrigger asChild>
-            <button
-              onClick={() => setIsJupiterOpen(true)}
-              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+            {/* Community Icon */}
+            <a
+              href="https://x.com/i/communities/1931968100594819518"
+              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10  -translate-x-1/2 -translate-y-1/2"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                left: "71%",
-                top: "84%",
+                left: "12.5%",
+                top: "29.25%",
               }}
             >
-              <span className="text-7xl sm:text-9xl drop-shadow-lg">💰</span>
-            </button>
-          </DialogTrigger>
-          <DialogContent className="h-[95vh] sm:max-w-xl sm:h-[86vh] p-0 pt-12 flex flex-col border-none shadow-none bg-transparent">
-            <div className="flex-1">
-              <iframe
-                src="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=BdTEJq3yEp68SNmeBfqBbDDy7nbSGftkDhDkVef6pump&embed=1"
-                width="100%"
-                height="100%"
-                style={{ border: "none", borderRadius: "8px 8px 8px 8px" }}
-                title="Jupiter Swap Widget"
+              <LiaUsersSolid className="size-10 sm:size-16 text-black drop-shadow-lg" />
+            </a>
+
+            {/* Pump.fun Logo */}
+            <a
+              href="https://pump.fun/coin/BdTEJq3yEp68SNmeBfqBbDDy7nbSGftkDhDkVef6pump"
+              className="absolute animate-spin-pause hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -translate-x-1/2 -translate-y-1/2"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                left: "65%",
+                top: "34.5%",
+              }}
+            >
+              <img
+                src="/logo.webp"
+                alt="Pump.fun"
+                className="size-10 sm:size-16 drop-shadow-lg"
               />
-            </div>
-          </DialogContent>
-        </Dialog>
+            </a>
+
+            {/* Chart Modal */}
+            <Dialog open={isChartOpen} onOpenChange={setIsChartOpen}>
+              <DialogTrigger asChild>
+                <button
+                  onClick={() => setIsChartOpen(true)}
+                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-9 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                  style={{
+                    left: "14%",
+                    top: "80%",
+                  }}
+                >
+                  <LuChartCandlestick className="size-10 sm:size-16  drop-shadow-lg " />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="h-[80vh] sm:h-[88vh] w-[96vw] p-0 pt-12 flex flex-col border-none shadow-none bg-transparent">
+                <div className="flex-1">
+                  <iframe
+                    src="https://dexscreener.com/solana/42vtq6lbytcptnmqwvstuaewvmckwmfmabwwivyhidcj?embed=1&theme=dark&trades=0&info=0"
+                    width="100%"
+                    height="100%"
+                    style={{ border: "none", borderRadius: "8px 8px 8px 8px" }}
+                    title="This is a Farm Chart"
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
+
+            {/* Contract Modal */}
+            <Dialog open={isContractOpen} onOpenChange={setIsContractOpen}>
+              <DialogTrigger asChild>
+                <button
+                  onClick={() => setIsContractOpen(true)}
+                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-4 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                  style={{
+                    left: "62.5%",
+                    top: "61%",
+                  }}
+                >
+                  <ReceiptText
+                    className="size-10 sm:size-15 text-amber-400 drop-shadow-lg"
+                    strokeWidth={2.25}
+                  />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-xl">
+                <DialogHeader>
+                  <DialogTitle className="mb-2">
+                    Contract Address 🧑‍🌾 🚜 🌽
+                  </DialogTitle>
+                  <DialogDescription className="text-xs sm:text-sm">
+                    Make life changing money by joining the $Farm
+                  </DialogDescription>
+                </DialogHeader>
+                <Contract />
+              </DialogContent>
+            </Dialog>
+
+            {/* Buy Token Icon */}
+            <Dialog open={isJupiterOpen} onOpenChange={setIsJupiterOpen}>
+              <DialogTrigger asChild>
+                <button
+                  onClick={() => setIsJupiterOpen(true)}
+                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                  style={{
+                    left: "71%",
+                    top: "84%",
+                  }}
+                >
+                  <span className="text-7xl sm:text-9xl drop-shadow-lg">
+                    💰
+                  </span>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="h-[95vh] sm:max-w-xl sm:h-[86vh] p-0 pt-12 flex flex-col border-none shadow-none bg-transparent">
+                <div className="flex-1">
+                  <iframe
+                    src="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=BdTEJq3yEp68SNmeBfqBbDDy7nbSGftkDhDkVef6pump&embed=1"
+                    width="100%"
+                    height="100%"
+                    style={{ border: "none", borderRadius: "8px 8px 8px 8px" }}
+                    title="Jupiter Swap Widget"
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
+        </div>
+        <Footer />
       </div>
-
-      <Footer />
 
       {/* Overlay Loader */}
       {isLoading && (
