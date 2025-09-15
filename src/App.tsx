@@ -1,5 +1,6 @@
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -15,12 +16,15 @@ import { LuChartCandlestick } from "react-icons/lu";
 import { Contract } from "./components/Contract";
 import { Footer } from "./components/Footer";
 import { Loader } from "./components/Loader";
+import { Button } from "./components/ui/button";
 
 export default function App() {
   const [isChartOpen, setIsChartOpen] = useState<boolean>(false);
   const [isContractOpen, setIsContractOpen] = useState<boolean>(false);
   const [isJupiterOpen, setIsJupiterOpen] = useState<boolean>(false);
+  const [isTelegramOpen, setIsTelegramOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [showFooter, setShowFooter] = useState<boolean>(false);
 
   useEffect(() => {
     // Preload image on JS side (double safety net)
@@ -33,18 +37,30 @@ export default function App() {
       setIsLoading(false);
     }, 2800);
 
+    // Timer for footer with 1 second delay
+    const footerTimer = setTimeout(() => {
+      setShowFooter(true);
+    }, 3200);
+
     return () => {
       clearTimeout(timer);
+      clearTimeout(footerTimer);
     };
   }, []);
 
   return (
-    <main className="min-h-svh w-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden">
+    <main className="min-h-svh sm:min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden">
       <div className="flex flex-col max-w-2xl w-full flex-1 p-2 sm:p-4">
         {/* Scene: locked ratio = same reference as the image */}
         {/* sm:mt-16*/}
         <div className="flex-1 grid place-items-center">
-          <div className="relative w-full aspect-[2/3]">
+          <div
+            className={`relative w-full aspect-[2/3] transition-all duration-700 ease-out ${
+              !isLoading
+                ? "translate-y-0 opacity-100"
+                : "-translate-y-full opacity-0"
+            }`}
+          >
             {/* The drawing becomes a real element, not a CSS background */}
             <img
               src="/mobile-bg.webp"
@@ -73,7 +89,7 @@ export default function App() {
             {/* Coingecko Icon */}
             <a
               href="https://www.coingecko.com/en/coins/this-is-a-farm"
-              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-15 -translate-x-1/2 -translate-y-1/2"
+              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-15 -translate-x-1/2 -translate-y-1/2 size-10 sm:size-16"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -84,7 +100,7 @@ export default function App() {
               <img
                 src="/CG-Symbol.svg"
                 alt="Coingecko"
-                className="size-10 sm:size-16 drop-shadow-lg"
+                className="drop-shadow-lg"
               />
             </a>
 
@@ -177,18 +193,85 @@ export default function App() {
               </DialogContent>
             </Dialog>
 
+            {/* Telegram Modal */}
+            <Dialog open={isTelegramOpen} onOpenChange={setIsTelegramOpen}>
+              <DialogTrigger asChild>
+                <button
+                  onClick={() => setIsTelegramOpen(true)}
+                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-16 -translate-x-1/2 -translate-y-1/2 size-13 sm:size-21 cursor-pointer"
+                  style={{
+                    left: "92%",
+                    top: "96%",
+                  }}
+                >
+                  <img
+                    src="/telegram-seeklogo.svg"
+                    alt="Telegram"
+                    className="drop-shadow-lg"
+                  />
+                </button>
+              </DialogTrigger>
+              <DialogContent
+                className="w-[90%] h-[40%] sm:h-[20%] sm:max-w-sm bg-cover bg-center bg-no-repeat"
+                style={{
+                  backgroundImage: "url('/dialog-bg.png')",
+                }}
+              >
+                {/* <DialogHeader className="text-left">
+                  <DialogTitle className="my-2 ">
+                    $Farm on{" "}
+                    <FaTelegramPlane className="inline-block text-[#0088cc] size-6" />
+                  </DialogTitle>
+                  <DialogDescription className="text-xs sm:text-sm ">
+                    Connect with fellow farmers or get our exclusif meme content
+                  </DialogDescription>
+                </DialogHeader> */}
+
+                <div className="flex flex-col gap-2 w-full mt-auto">
+                  <DialogClose asChild>
+                    <a
+                      href="https://t.me/farmonsolportal"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button
+                        variant="outline"
+                        className="cursor-pointer w-full active:scale-95 transition-transform"
+                      >
+                        👨‍🌾&nbsp;&nbsp;Community
+                      </Button>
+                    </a>
+                  </DialogClose>
+                  <DialogClose asChild>
+                    <a
+                      href="https://t.me/Farm_CTO_meme"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button
+                        variant="outline"
+                        className="cursor-pointer w-full active:scale-95 transition-transform"
+                      >
+                        😂&nbsp;&nbsp;Meme
+                      </Button>
+                    </a>
+                  </DialogClose>
+                </div>
+              </DialogContent>
+            </Dialog>
+
             {/* Buy Token Icon */}
             <Dialog open={isJupiterOpen} onOpenChange={setIsJupiterOpen}>
               <DialogTrigger asChild>
                 <button
                   onClick={() => setIsJupiterOpen(true)}
-                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-8 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
                   style={{
                     left: "71%",
-                    top: "84%",
+                    top: "83.25%",
                   }}
                 >
-                  <span className="text-7xl sm:text-9xl drop-shadow-lg">
+                  <span className="text-6xl sm:text-8xl drop-shadow-lg">
                     💰
                   </span>
                 </button>
@@ -207,7 +290,16 @@ export default function App() {
             </Dialog>
           </div>
         </div>
-        <Footer />
+
+        <div
+          className={`transition-all duration-700 ease-in-out ${
+            showFooter
+              ? "translate-y-0 opacity-100"
+              : "translate-y-full opacity-0"
+          }`}
+        >
+          <Footer />
+        </div>
       </div>
 
       {/* Overlay Loader */}
