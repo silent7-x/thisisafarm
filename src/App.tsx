@@ -190,7 +190,7 @@ export default function App() {
                   <DialogTitle className="mb-2">
                     Contract Address 🧑‍🌾 🚜 🌽
                   </DialogTitle>
-                  <DialogDescription className="text-xs sm:text-sm">
+                  <DialogDescription className="text-sm ">
                     Make life changing money by joining the $Farm
                   </DialogDescription>
                 </DialogHeader>
