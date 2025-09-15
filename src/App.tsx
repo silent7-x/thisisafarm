@@ -27,10 +27,18 @@ export default function App() {
   const [showFooter, setShowFooter] = useState<boolean>(false);
 
   useEffect(() => {
-    // Preload image on JS side (double safety net)
-    const img = new Image();
-    img.src = "/mobile-bg.webp";
-    img.decode?.().catch(() => {});
+    // Preload images on JS side (double safety net)
+    const mobileImg = new Image();
+    mobileImg.src = "/mobile-bg.webp";
+    mobileImg.decode?.().catch(() => {});
+
+    const dialogBgImg = new Image();
+    dialogBgImg.src = "/dialog-bg.png";
+    dialogBgImg.decode?.().catch(() => {});
+
+    const dialogBg2Img = new Image();
+    dialogBg2Img.src = "/dialog-bg2.png";
+    dialogBg2Img.decode?.().catch(() => {});
 
     // Timer for overlay loader
     const timer = setTimeout(() => {
@@ -180,12 +188,7 @@ export default function App() {
                   />
                 </button>
               </DialogTrigger>
-              <DialogContent
-                className=" w-[90%] h-[40%] sm:h-[28%] sm:max-w-sm bg-cover bg-center bg-no-repeat"
-                style={{
-                  backgroundImage: "url('/dialog-bg2.png')",
-                }}
-              >
+              <DialogContent className="w-[90%] h-[40%] sm:h-[28%] sm:max-w-sm bg-cover bg-center bg-no-repeat bg-[url('/dialog-bg2.png')]">
                 <DialogHeader className="text-left mt-auto">
                   <DialogTitle className="mb-2">
                     Contract Address 🧑‍🌾 🚜 🌽
@@ -216,12 +219,7 @@ export default function App() {
                   />
                 </button>
               </DialogTrigger>
-              <DialogContent
-                className="w-[90%] h-[40%] sm:h-[28%] sm:max-w-sm bg-cover bg-center bg-no-repeat"
-                style={{
-                  backgroundImage: "url('/dialog-bg.png')",
-                }}
-              >
+              <DialogContent className="w-[90%] h-[40%] sm:h-[28%] sm:max-w-sm bg-cover bg-center bg-no-repeat bg-[url('/dialog-bg.png')]">
                 <div className="flex flex-col gap-2 w-full mt-auto">
                   <DialogClose asChild>
                     <a
