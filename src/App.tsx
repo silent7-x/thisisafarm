@@ -180,8 +180,13 @@ export default function App() {
                   />
                 </button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-xl">
-                <DialogHeader>
+              <DialogContent
+                className=" w-[90%] h-[40%] sm:h-[28%] sm:max-w-sm bg-cover bg-center bg-no-repeat"
+                style={{
+                  backgroundImage: "url('/dialog-bg2.png')",
+                }}
+              >
+                <DialogHeader className="text-left mt-auto">
                   <DialogTitle className="mb-2">
                     Contract Address 🧑‍🌾 🚜 🌽
                   </DialogTitle>
@@ -212,21 +217,11 @@ export default function App() {
                 </button>
               </DialogTrigger>
               <DialogContent
-                className="w-[90%] h-[40%] sm:h-[20%] sm:max-w-sm bg-cover bg-center bg-no-repeat"
+                className="w-[90%] h-[40%] sm:h-[28%] sm:max-w-sm bg-cover bg-center bg-no-repeat"
                 style={{
                   backgroundImage: "url('/dialog-bg.png')",
                 }}
               >
-                {/* <DialogHeader className="text-left">
-                  <DialogTitle className="my-2 ">
-                    $Farm on{" "}
-                    <FaTelegramPlane className="inline-block text-[#0088cc] size-6" />
-                  </DialogTitle>
-                  <DialogDescription className="text-xs sm:text-sm ">
-                    Connect with fellow farmers or get our exclusif meme content
-                  </DialogDescription>
-                </DialogHeader> */}
-
                 <div className="flex flex-col gap-2 w-full mt-auto">
                   <DialogClose asChild>
                     <a
