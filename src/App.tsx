@@ -10,15 +10,16 @@ import {
 import { ReceiptText } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FaSquareXTwitter } from "react-icons/fa6";
-import { LiaUsersSolid } from "react-icons/lia";
 import { LuChartCandlestick } from "react-icons/lu";
 
+import { FaTelegramPlane } from "react-icons/fa";
 import { Contract } from "./components/Contract";
 import { Footer } from "./components/Footer";
 import { Loader } from "./components/Loader";
 import { Button } from "./components/ui/button";
 
 export default function App() {
+  const [isTwitterOpen, setIsTwitterOpen] = useState<boolean>(false);
   const [isChartOpen, setIsChartOpen] = useState<boolean>(false);
   const [isContractOpen, setIsContractOpen] = useState<boolean>(false);
   const [isJupiterOpen, setIsJupiterOpen] = useState<boolean>(false);
@@ -32,13 +33,13 @@ export default function App() {
     mobileImg.src = "/mobile-bg.webp";
     mobileImg.decode?.().catch(() => {});
 
-    const dialogBgImg = new Image();
-    dialogBgImg.src = "/dialog-bg.png";
-    dialogBgImg.decode?.().catch(() => {});
-
     const dialogBg2Img = new Image();
     dialogBg2Img.src = "/dialog-bg2.png";
     dialogBg2Img.decode?.().catch(() => {});
+
+    const dialogBg3Img = new Image();
+    dialogBg3Img.src = "/dialog-bg3.png";
+    dialogBg3Img.decode?.().catch(() => {});
 
     // Timer for overlay loader
     const timer = setTimeout(() => {
@@ -81,18 +82,52 @@ export default function App() {
             />
 
             {/* X (Twitter) Icon */}
-            <a
-              href="https://x.com/ThisisaFarm"
-              className="absolute animate-bounce hover:scale-120 active:scale-95 transition-transform duration-300 z-10 rotate-15 -translate-x-1/2 -translate-y-1/2"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                left: "90%",
-                top: "17.5%",
-              }}
-            >
-              <FaSquareXTwitter className="size-11 sm:size-18 text-black drop-shadow-lg" />
-            </a>
+            <Dialog open={isTwitterOpen} onOpenChange={setIsTwitterOpen}>
+              <DialogTrigger asChild>
+                <button
+                  onClick={() => setIsTwitterOpen(true)}
+                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-15 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                  style={{
+                    left: "90%",
+                    top: "17.5%",
+                  }}
+                >
+                  <FaSquareXTwitter className="size-11 sm:size-18 text-black drop-shadow-lg" />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="w-[90%] sm:max-w-sm aspect-square bg-cover bg-center bg-no-repeat bg-[url('/dialog-bg3.png')]">
+                <div className="flex flex-col gap-2 w-full mt-auto">
+                  <DialogClose asChild>
+                    <a
+                      href="https://x.com/ThisisaFarm"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button
+                        variant="outline"
+                        className="cursor-pointer w-full active:scale-95 transition-transform"
+                      >
+                        👨‍🌾&nbsp;&nbsp;Official Account
+                      </Button>
+                    </a>
+                  </DialogClose>
+                  <DialogClose asChild>
+                    <a
+                      href="https://x.com/i/communities/1931968100594819518"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button
+                        variant="outline"
+                        className="cursor-pointer w-full active:scale-95 transition-transform"
+                      >
+                        🤲&nbsp;&nbsp;X Community
+                      </Button>
+                    </a>
+                  </DialogClose>
+                </div>
+              </DialogContent>
+            </Dialog>
 
             {/* Coingecko Icon */}
             <a
@@ -110,20 +145,6 @@ export default function App() {
                 alt="Coingecko"
                 className="drop-shadow-lg"
               />
-            </a>
-
-            {/* Community Icon */}
-            <a
-              href="https://x.com/i/communities/1931968100594819518"
-              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10  -translate-x-1/2 -translate-y-1/2"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                left: "12.5%",
-                top: "29.25%",
-              }}
-            >
-              <LiaUsersSolid className="size-10 sm:size-16 text-black drop-shadow-lg" />
             </a>
 
             {/* Pump.fun Logo */}
@@ -188,13 +209,13 @@ export default function App() {
                   />
                 </button>
               </DialogTrigger>
-              <DialogContent className="w-[90%] h-[40%] sm:h-[28%] sm:max-w-sm bg-cover bg-center bg-no-repeat bg-[url('/dialog-bg2.png')]">
+              <DialogContent className="w-[90%] sm:max-w-sm aspect-square bg-cover bg-center bg-no-repeat bg-[url('/dialog-bg2.png')]">
                 <DialogHeader className="text-left mt-auto">
                   <DialogTitle className="mb-2">
                     Contract Address 🧑‍🌾 🚜 🌽
                   </DialogTitle>
-                  <DialogDescription className="text-sm ">
-                    Make life changing money by joining the $Farm
+                  <DialogDescription className="text-sm font-semibold">
+                    "You either $Farm or get farmed!"
                   </DialogDescription>
                 </DialogHeader>
                 <Contract />
@@ -206,20 +227,16 @@ export default function App() {
               <DialogTrigger asChild>
                 <button
                   onClick={() => setIsTelegramOpen(true)}
-                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-16 -translate-x-1/2 -translate-y-1/2 size-13 sm:size-21 cursor-pointer"
+                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-8 -translate-x-1/2 -translate-y-1/2 size-13 sm:size-21 cursor-pointer"
                   style={{
-                    left: "92%",
-                    top: "96%",
+                    left: "13%",
+                    top: "29.5%",
                   }}
                 >
-                  <img
-                    src="/telegram-seeklogo.svg"
-                    alt="Telegram"
-                    className="drop-shadow-lg"
-                  />
+                  <FaTelegramPlane className="size-10 sm:size-16 drop-shadow-lg text-[#0088cc]" />
                 </button>
               </DialogTrigger>
-              <DialogContent className="w-[90%] h-[40%] sm:h-[28%] sm:max-w-sm bg-cover bg-center bg-no-repeat bg-[url('/dialog-bg.png')]">
+              <DialogContent className="w-[90%] sm:max-w-sm aspect-square bg-cover bg-center bg-no-repeat bg-[url('/dialog-bg3.png')]">
                 <div className="flex flex-col gap-2 w-full mt-auto">
                   <DialogClose asChild>
                     <a
@@ -245,7 +262,7 @@ export default function App() {
                         variant="outline"
                         className="cursor-pointer w-full active:scale-95 transition-transform"
                       >
-                        😂&nbsp;&nbsp;Meme
+                        😂&nbsp;&nbsp;Memes
                       </Button>
                     </a>
                   </DialogClose>
