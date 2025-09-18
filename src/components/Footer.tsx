@@ -2,7 +2,8 @@ import { FaGithub } from "react-icons/fa6";
 
 export const Footer = () => {
   return (
-    <footer className="fixed bottom-0 z-20 flex flex-col-reverse items-center gap-2 sm:gap-2 w-full p-1 pt-2 sm:pb-2 max-w-2xl bg-gradient-to-b from-transparent to-green-300/80 backdrop-blur-sm">
+    //fixed bottom-0 z-20
+    <footer className="flex flex-col-reverse items-center gap-2 sm:gap-2 w-full pb-1.5 pt-3 sm:pb-2 sm:pt-4 max-w-2xl bg-gradient-to-b from-transparent to-green-300/80 backdrop-blur-sm">
       {/* Copyright Text */}
       <div className="flex flex-row text-xs sm:text-sm text-gray-600 justify-center itemscenter">
         <p className="font-semibold sm:font-bold">
