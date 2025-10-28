@@ -1,13 +1,15 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
-      "source": "/_games_proxy/:path*",
-      "destination": "https://thisisafarm.games/:path*"
-    },
-    {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "games.thisisafarm.fun" }],
-      "destination": "/_games_proxy/:path*"
+      "has": [
+        {
+          "type": "host",
+          "value": "games.thisisafarm.fun"
+        }
+      ],
+      "destination": "https://thisisafarm.games/:path*"
     }
   ]
 }
