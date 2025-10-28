@@ -1,8 +1,9 @@
 {
   "rewrites": [
     {
-      "source": "/games/(.*)",
-      "destination": "https://thisisafarm.games/$1"
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "games.thisisafarm.fun" }],
+      "destination": "https://thisisafarm.games/:path*"
     }
   ]
 }
