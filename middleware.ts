@@ -7,35 +7,35 @@ export default async function middleware(req: Request) {
   const url = new URL(req.url);
 
   if (url.hostname === "games.thisisafarm.fun") {
-    // URL cible
     const targetUrl = new URL(
       req.url.replace("://games.thisisafarm.fun", "://thisisafarm.games")
     );
 
-    // Clone tous les headers (sauf host)
+    // Supprime Accept-Encoding pour forcer réponse non compressée
     const headers = new Headers(req.headers);
-    headers.delete("host"); // Évite conflit
+    headers.delete("accept-encoding");
+    headers.delete("host");
 
-    // Fetch avec headers complets
     const response = await fetch(targetUrl, {
-      ...req,
       headers,
+      method: req.method,
+      body: req.body,
+      redirect: "follow",
     });
 
-    // Clone réponse pour modifier headers
-    const newResponse = new Response(response.body, response);
+    // Clone + forward tous headers sauf content-encoding
+    const newHeaders = new Headers(response.headers);
+    newHeaders.delete("content-encoding"); // Évite gzip/br
+    newHeaders.delete("content-length"); // Recalculé
+    newHeaders.set("access-control-allow-origin", "*");
 
-    // Forward tous les headers du site cible
-    response.headers.forEach((value, key) => {
-      newResponse.headers.set(key, value);
+    // Retourne body brut (décompressé par le fetch)
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: newHeaders,
     });
-
-    // Ajoute CORS si besoin (facultatif)
-    newResponse.headers.set("Access-Control-Allow-Origin", "*");
-
-    return newResponse;
   }
 
-  // Pour thisisafarm.fun → normal
   return fetch(req);
 }
