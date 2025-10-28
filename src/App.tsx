@@ -10,6 +10,7 @@ import {
 import { ReceiptText } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FaSquareXTwitter } from "react-icons/fa6";
+import { GrGamepad } from "react-icons/gr";
 import { LuChartCandlestick } from "react-icons/lu";
 
 import { FaTelegramPlane } from "react-icons/fa";
@@ -24,6 +25,7 @@ export default function App() {
   const [isContractOpen, setIsContractOpen] = useState<boolean>(false);
   const [isJupiterOpen, setIsJupiterOpen] = useState<boolean>(false);
   const [isTelegramOpen, setIsTelegramOpen] = useState<boolean>(false);
+  const [isGamesOpen, setIsGamesOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showFooter, setShowFooter] = useState<boolean>(false);
 
@@ -164,6 +166,54 @@ export default function App() {
                 className="size-10 sm:size-16 drop-shadow-lg"
               />
             </a>
+
+            {/* Games Icon */}
+            <Dialog open={isGamesOpen} onOpenChange={setIsGamesOpen}>
+              <DialogTrigger asChild>
+                <button
+                  onClick={() => setIsGamesOpen(true)}
+                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                  style={{
+                    left: "48%",
+                    top: "45.5%",
+                  }}
+                >
+                  <GrGamepad className="size-10 sm:size-16 drop-shadow-lg" />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="w-[90%] sm:max-w-sm aspect-square bg-cover bg-center bg-no-repeat bg-[url('/dialog-bg3.png')]">
+                <div className="flex flex-col gap-2 w-full mt-auto">
+                  <DialogClose asChild>
+                    <a
+                      href="https://games.thisisafarm.fun"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button
+                        variant="outline"
+                        className="cursor-pointer w-full active:scale-95 transition-transform"
+                      >
+                        🎮&nbsp;&nbsp;Play Games
+                      </Button>
+                    </a>
+                  </DialogClose>
+                  <DialogClose asChild>
+                    <a
+                      href="https://prediction.thisisafarm.fun"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button
+                        variant="outline"
+                        className="cursor-pointer w-full active:scale-95 transition-transform"
+                      >
+                        🎮&nbsp;&nbsp;Prediction Market
+                      </Button>
+                    </a>
+                  </DialogClose>
+                </div>
+              </DialogContent>
+            </Dialog>
 
             {/* Chart Modal */}
             <Dialog open={isChartOpen} onOpenChange={setIsChartOpen}>
