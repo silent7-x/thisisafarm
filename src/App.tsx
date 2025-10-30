@@ -8,7 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ReceiptText } from "lucide-react";
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { GrGamepad } from "react-icons/gr";
 import { LuChartCandlestick } from "react-icons/lu";
@@ -18,6 +18,77 @@ import { Contract } from "./components/Contract";
 import { Footer } from "./components/Footer";
 import { Loader } from "./components/Loader";
 import { Button } from "./components/ui/button";
+
+type FloatingProps = {
+  left: string;
+  top: string;
+  className?: string;
+  children: ReactNode;
+  onClick?: () => void;
+};
+
+function FloatingButton({
+  left,
+  top,
+  className,
+  children,
+  onClick,
+}: FloatingProps) {
+  return (
+    <button
+      className={
+        "absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -translate-x-1/2 -translate-y-1/2 cursor-pointer " +
+        (className ?? "")
+      }
+      style={{ left, top }}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
+
+type FloatingAnchorProps = FloatingProps & {
+  href: string;
+  target?: string;
+  rel?: string;
+};
+
+function FloatingAnchor({
+  href,
+  target = "_blank",
+  rel = "noopener noreferrer",
+  left,
+  top,
+  className,
+  children,
+}: FloatingAnchorProps) {
+  return (
+    <a
+      href={href}
+      target={target}
+      rel={rel}
+      className={
+        "absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -translate-x-1/2 -translate-y-1/2 " +
+        (className ?? "")
+      }
+      style={{ left, top }}
+    >
+      {children}
+    </a>
+  );
+}
+
+function SquareDialog({ bg, children }: { bg: 2 | 3; children: ReactNode }) {
+  const bgUrl = bg === 2 ? "/dialog-bg2.png" : "/dialog-bg3.png";
+  return (
+    <DialogContent
+      className={`w-[90%] sm:max-w-sm aspect-square bg-cover bg-center bg-no-repeat bg-[url('${bgUrl}')]`}
+    >
+      {children}
+    </DialogContent>
+  );
+}
 
 export default function App() {
   const [isTwitterOpen, setIsTwitterOpen] = useState<boolean>(false);
@@ -60,7 +131,7 @@ export default function App() {
   }, []);
 
   return (
-    <main className="min-h-svh sm:min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden">
+    <main className="min-h-svh sm:min-h-screen  w-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-300 from-40% to-green-300 to-70% overflow-x-hidden">
       <div className="flex flex-col max-w-2xl w-full flex-1 p-2 sm:p-4">
         {/* Scene: locked ratio = same reference as the image */}
         {/* sm:mt-16*/}
@@ -86,18 +157,16 @@ export default function App() {
             {/* X (Twitter) Icon */}
             <Dialog open={isTwitterOpen} onOpenChange={setIsTwitterOpen}>
               <DialogTrigger asChild>
-                <button
+                <FloatingButton
+                  left="90%"
+                  top="17.5%"
+                  className="rotate-15"
                   onClick={() => setIsTwitterOpen(true)}
-                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-15 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-                  style={{
-                    left: "90%",
-                    top: "17.5%",
-                  }}
                 >
                   <FaSquareXTwitter className="size-11 sm:size-18 text-black drop-shadow-lg" />
-                </button>
+                </FloatingButton>
               </DialogTrigger>
-              <DialogContent className="w-[90%] sm:max-w-sm aspect-square bg-cover bg-center bg-no-repeat bg-[url('/dialog-bg3.png')]">
+              <SquareDialog bg={3}>
                 <div className="flex flex-col gap-2 w-full mt-auto">
                   <DialogClose asChild>
                     <a
@@ -128,60 +197,50 @@ export default function App() {
                     </a>
                   </DialogClose>
                 </div>
-              </DialogContent>
+              </SquareDialog>
             </Dialog>
 
             {/* Coingecko Icon */}
-            <a
+            <FloatingAnchor
               href="https://www.coingecko.com/en/coins/this-is-a-farm"
-              className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-15 -translate-x-1/2 -translate-y-1/2 size-10 sm:size-16"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                left: "18%",
-                top: "59%",
-              }}
+              left="18%"
+              top="59%"
+              className="-rotate-15 size-10 sm:size-16"
             >
               <img
                 src="/CG-Symbol.svg"
                 alt="Coingecko"
                 className="drop-shadow-lg"
               />
-            </a>
+            </FloatingAnchor>
 
             {/* Pump.fun Logo */}
-            <a
+            <FloatingAnchor
               href="https://pump.fun/coin/BdTEJq3yEp68SNmeBfqBbDDy7nbSGftkDhDkVef6pump"
-              className="absolute animate-spin-pause hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -translate-x-1/2 -translate-y-1/2"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                left: "65%",
-                top: "34.5%",
-              }}
+              left="65%"
+              top="34.5%"
+              className="animate-spin-pause"
             >
               <img
                 src="/logo.webp"
                 alt="Pump.fun"
                 className="size-10 sm:size-16 drop-shadow-lg"
               />
-            </a>
+            </FloatingAnchor>
 
             {/* Games Icon */}
             <Dialog open={isGamesOpen} onOpenChange={setIsGamesOpen}>
               <DialogTrigger asChild>
-                <button
+                <FloatingButton
+                  left="48%"
+                  top="45.5%"
+                  className="rotate-12"
                   onClick={() => setIsGamesOpen(true)}
-                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-12 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-                  style={{
-                    left: "48%",
-                    top: "45.5%",
-                  }}
                 >
                   <GrGamepad className="size-10 sm:size-16 drop-shadow-lg" />
-                </button>
+                </FloatingButton>
               </DialogTrigger>
-              <DialogContent className="w-[90%] sm:max-w-sm aspect-square bg-cover bg-center bg-no-repeat bg-[url('/dialog-bg3.png')]">
+              <SquareDialog bg={3}>
                 <div className="flex flex-col gap-2 w-full mt-auto">
                   <DialogClose asChild>
                     <a
@@ -212,22 +271,20 @@ export default function App() {
                     </a>
                   </DialogClose>
                 </div>
-              </DialogContent>
+              </SquareDialog>
             </Dialog>
 
             {/* Chart Modal */}
             <Dialog open={isChartOpen} onOpenChange={setIsChartOpen}>
               <DialogTrigger asChild>
-                <button
+                <FloatingButton
+                  left="14%"
+                  top="80%"
+                  className="-rotate-9"
                   onClick={() => setIsChartOpen(true)}
-                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-9 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-                  style={{
-                    left: "14%",
-                    top: "80%",
-                  }}
                 >
                   <LuChartCandlestick className="size-10 sm:size-16  drop-shadow-lg " />
-                </button>
+                </FloatingButton>
               </DialogTrigger>
               <DialogContent className="h-[80vh] sm:h-[88vh] w-[96vw] p-0 pt-12 flex flex-col border-none shadow-none bg-transparent">
                 <div className="flex-1">
@@ -245,21 +302,19 @@ export default function App() {
             {/* Contract Modal */}
             <Dialog open={isContractOpen} onOpenChange={setIsContractOpen}>
               <DialogTrigger asChild>
-                <button
+                <FloatingButton
+                  left="62.5%"
+                  top="61%"
+                  className="-rotate-4"
                   onClick={() => setIsContractOpen(true)}
-                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 -rotate-4 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-                  style={{
-                    left: "62.5%",
-                    top: "61%",
-                  }}
                 >
                   <ReceiptText
                     className="size-10 sm:size-15 text-amber-400 drop-shadow-lg"
                     strokeWidth={2.25}
                   />
-                </button>
+                </FloatingButton>
               </DialogTrigger>
-              <DialogContent className="w-[90%] sm:max-w-sm aspect-square bg-cover bg-center bg-no-repeat bg-[url('/dialog-bg2.png')]">
+              <SquareDialog bg={2}>
                 <DialogHeader className="text-left mt-auto">
                   <DialogTitle className="mb-2">
                     Contract Address 🧑‍🌾 🚜 🌽
@@ -269,24 +324,22 @@ export default function App() {
                   </DialogDescription>
                 </DialogHeader>
                 <Contract />
-              </DialogContent>
+              </SquareDialog>
             </Dialog>
 
             {/* Telegram Modal */}
             <Dialog open={isTelegramOpen} onOpenChange={setIsTelegramOpen}>
               <DialogTrigger asChild>
-                <button
+                <FloatingButton
+                  left="13%"
+                  top="29.5%"
+                  className="rotate-8 size-13 sm:size-21"
                   onClick={() => setIsTelegramOpen(true)}
-                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-8 -translate-x-1/2 -translate-y-1/2 size-13 sm:size-21 cursor-pointer"
-                  style={{
-                    left: "13%",
-                    top: "29.5%",
-                  }}
                 >
                   <FaTelegramPlane className="size-10 sm:size-16 drop-shadow-lg text-[#0088cc]" />
-                </button>
+                </FloatingButton>
               </DialogTrigger>
-              <DialogContent className="w-[90%] sm:max-w-sm aspect-square bg-cover bg-center bg-no-repeat bg-[url('/dialog-bg3.png')]">
+              <SquareDialog bg={3}>
                 <div className="flex flex-col gap-2 w-full mt-auto">
                   <DialogClose asChild>
                     <a
@@ -317,24 +370,22 @@ export default function App() {
                     </a>
                   </DialogClose>
                 </div>
-              </DialogContent>
+              </SquareDialog>
             </Dialog>
 
             {/* Buy Token Icon */}
             <Dialog open={isJupiterOpen} onOpenChange={setIsJupiterOpen}>
               <DialogTrigger asChild>
-                <button
+                <FloatingButton
+                  left="71%"
+                  top="83.25%"
+                  className="rotate-8"
                   onClick={() => setIsJupiterOpen(true)}
-                  className="absolute animate-bounce hover:scale-110 active:scale-95 transition-transform duration-300 z-10 rotate-8 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-                  style={{
-                    left: "71%",
-                    top: "83.25%",
-                  }}
                 >
                   <span className="text-6xl sm:text-8xl drop-shadow-lg">
                     💰
                   </span>
-                </button>
+                </FloatingButton>
               </DialogTrigger>
               <DialogContent className="h-[95vh] sm:max-w-xl sm:h-[86vh] p-0 pt-12 flex flex-col border-none shadow-none bg-transparent">
                 <div className="flex-1">
