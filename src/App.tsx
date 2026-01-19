@@ -79,10 +79,12 @@ function FloatingAnchor({
 }
 
 function SquareDialog({ bg, children }: { bg: 2 | 3; children: ReactNode }) {
-  const bgUrl = bg === 2 ? "/dialog-bg2.png" : "/dialog-bg3.png";
+  // Keep Tailwind classes static so JIT doesn't purge the background-image utilities.
+  const bgClass =
+    bg === 2 ? "bg-[url('/dialog-bg2.png')]" : "bg-[url('/dialog-bg3.png')]";
   return (
     <DialogContent
-      className={`w-[90%] sm:max-w-sm aspect-square bg-cover bg-center bg-no-repeat bg-[url('${bgUrl}')]`}
+      className={`w-[90%] sm:max-w-sm aspect-square bg-cover bg-center bg-no-repeat ${bgClass}`}
     >
       {children}
     </DialogContent>
@@ -295,7 +297,7 @@ export default function App() {
                 <div className="flex flex-col gap-2 w-full mt-auto">
                   <DialogClose asChild>
                     <a
-                      href="https://t.me/farmonsolportal"
+                      href="https://t.me/thisisafarm_sol"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
